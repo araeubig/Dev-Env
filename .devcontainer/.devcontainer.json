@@ -1,5 +1,6 @@
 {
     "build": {
+        "name": "BWS Development Environment",
         "dockerfile": "./Dockerfile",
         "context": "."
     },
