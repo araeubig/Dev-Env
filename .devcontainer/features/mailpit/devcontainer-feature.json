@@ -1,0 +1,16 @@
+{
+    "id": "mailpit",
+    "name": "Mailpit",
+    "description": "Sets up Mailpit into the Dev Environment",
+    "version": "1.0.2",
+    "options": {
+        "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable Mailpit"
+        }
+    },
+    "installsAfter": [
+        "./features/php"
+    ]
+}

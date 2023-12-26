@@ -1,0 +1,56 @@
+{
+    "id": "wordpress",
+    "name": "WordPress",
+    "description": "Sets up WordPress into the Dev Environment",
+    "version": "2.2.1",
+    "containerEnv": {
+        "WP_CLI_CONFIG_PATH": "/etc/wp-cli/wp-cli.yaml"
+    },
+    "updateContentCommand": "composer install -n || true",
+    "postCreateCommand": "/usr/local/bin/wordpress-post-create.sh",
+    "options": {
+        "version": {
+            "type": "string",
+            "default": "latest",
+            "proposals": [
+                "latest",
+                "nightly"
+            ],
+            "description": "WordPress version to install"
+        },
+        "moveUploadsToWorkspaces": {
+            "type": "boolean",
+            "default": false,
+            "description": "Set the uploads directory to /workspaces/uploads to persist data across container rebuilds (GHCS)"
+        },
+        "multisite": {
+            "type": "boolean",
+            "default": false,
+            "description": "Install WordPress as a multisite"
+        },
+        "multisiteStyle": {
+            "type": "string",
+            "default": "subdirectory",
+            "description": "Multisite style to use",
+            "proposals": [
+                "subdomain",
+                "subdirectory"
+            ]
+        },
+        "domain": {
+            "type": "string",
+            "default": "localhost",
+            "description": "Domain to use for the site"
+        }
+    },
+    "installsAfter": [
+        "./features/wp-cli"
+    ],
+    "customizations": {
+        "vcode": {
+            "extensions": [
+                "johnbillion.vscode-wordpress-hooks"
+            ]
+        }
+    }
+}
