@@ -1,0 +1,31 @@
+{
+    "id": "vip-go-mu-plugins",
+    "name": "VIP Go MU Plugins",
+    "version": "2.0.1",
+    "description": "Installs VIP Go MU Plugins into the Dev Environment",
+    "options": {
+        "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to install VIP Go MU Plugins"
+        },
+        "branch": {
+            "type": "string",
+            "default": "staging",
+            "description": "Which branch to install from",
+            "enum": [
+                "staging",
+                "production",
+                "develop"
+            ]
+        },
+        "development_mode": {
+            "type": "boolean",
+            "default": false,
+            "description": "Set to true to install all files necessary for development of VIP MU plugins."
+        }
+    },
+    "installsAfter": [
+        "./features/wordpress"
+    ]
+}
