@@ -1,0 +1,106 @@
+{
+    "name": "Development Environment",
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": "."
+    },
+    "overrideCommand": false,
+    "forwardPorts": [80, 81, 8025],
+    "portsAttributes": {
+        "80": {
+            "label": "Application",
+            "onAutoForward": "notify",
+            "elevateIfNeeded": true
+        },
+        "81": {
+            "label": "phpMyAdmin",
+            "onAutoForward": "notify",
+            "elevateIfNeeded": true
+        },
+        "8025": {
+            "label": "MailHog",
+            "onAutoForward": "notify"
+        },
+        "1025": {
+            "label": "MailHog SMTP",
+            "onAutoForward": "ignore"
+        },
+        "3306": {
+            "label": "MySQL",
+            "onAutoForward": "ignore"
+        },
+        "9000": {
+            "label": "php-fpm",
+            "onAutoForward": "ignore"
+        },
+        "9003": {
+            "label": "Xdebug Client Port",
+            "onAutoForward": "notify"
+        }
+    },
+    "postCreateCommand": "/usr/local/bin/setup-wordpress.sh",
+    "features": {
+        //Mandatory features
+        "./features/base": {
+        },
+        "./features/nginx": {
+            "mediaRedirectURL": ""
+        },
+        "./features/php": {
+            "version": "8.2",
+            "composer": false
+        },
+        "./features/mariadb": {
+            "installDatabaseToWorkspaces": false
+        },
+        "./features/wordpress": {
+            "version": "latest",
+            "moveUploadsToWorkspaces": false,
+            "multisite": false,
+            "multisiteStyle": "subdirectory"
+        },
+        "./features/wp-cli": {
+            "nightly": false
+        },
+        "./features/vip-go-mu-plugins": {
+            "enabled": false,
+            "retainGit": false
+        },
+        "./features/dev-tools": {},
+        // Elasticsearch
+        "./features/elasticsearch": {
+            "enabled": false,
+            "installDataToWorkspaces": false
+        },
+        // Recommended features
+        "./features/memcached": {
+            "enabled": false
+        },
+        "./features/vip-cli": {
+            "enabled": false
+        },
+        // Tools
+        "./features/mailhog": {
+            "enabled": false
+        },
+        "./features/phpmyadmin": {
+            "enabled": true
+        },
+        // Debugging
+        "./features/xdebug": {
+            "enabled": false,
+            "mode": "debug,develop"
+        },
+        // Misc
+        "./features/mc": {
+            "enabled": true
+        },
+        // Cron
+        "./features/cron": {
+            "enabled": false,
+            "run_wp_cron": false,
+            "wp_cron_schedule": "*/15 * * * *"
+        }
+    },
+    "remoteUser": "vscode"
+}
