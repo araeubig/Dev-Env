@@ -4,6 +4,7 @@
         "dockerfile": "./Dockerfile",
         "context": "."
     },
+    "runArgs": ["--env-file",".devcontainer/devcontainer.env"],
     "overrideCommand": false,
     "forwardPorts": [80, 81, 8025],
     "portsAttributes": {

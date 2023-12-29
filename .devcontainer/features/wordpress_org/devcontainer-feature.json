@@ -1,7 +1,7 @@
 {
-    "id": "wordpressext",
-    "name": "WordPress Extended",
-    "description": "Sets up WordPress with options into the Dev Environment",
+    "id": "wordpress",
+    "name": "WordPress",
+    "description": "Sets up WordPress into the Dev Environment",
     "version": "2.2.1",
     "containerEnv": {
         "WP_CLI_CONFIG_PATH": "/etc/wp-cli/wp-cli.yaml"
@@ -41,31 +41,6 @@
             "type": "string",
             "default": "localhost",
             "description": "Domain to use for the site"
-        },
-        "InstallLanguages": {
-            "type": "boolean",
-            "default": false,
-            "description": "Install languages"
-        },
-        "InstallPlugins": {
-            "type": "boolean",
-            "default": false,
-            "description": "Install plugins"
-        },
-        "DeveloperEnvironment": {
-            "type": "string",
-            "default": "site",
-            "proposals": [
-                "plugin",
-                "theme",
-                "site"
-            ],
-            "description": "Environment to use for site"
-        },
-        "ThemeUnitTest": {
-            "type": "boolean",
-            "default": false,
-            "description": "Install theme unit test data"
         }
     },
     "installsAfter": [

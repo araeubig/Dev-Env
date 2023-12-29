@@ -47,18 +47,11 @@ else
     base=$(pwd)
 fi
 
-if [ "${WP_ENVIRONMENT}" = "site" ]; then
-    WS_DIRS="user-mu-plugins images languages plugins themes user-config"
-else
-     WS_DIRS="user-config"
-fi
-
-for i in $WS_DIRS; do
-    if [ ! -e "${base}/${i}" ]; then
-        mkdir -p "${base}/${i}"
+for i in client-mu-plugins images languages plugins themes vip-config; do
+    if [ -e "${base}/${i}" ]; then
+        sudo rm -rf "/wp/wp-content/${i}"
+        sudo ln -sf "${base}/${i}" "/wp/wp-content/${i}"
     fi
-    sudo rm -rf "/wp/wp-content/${i}"
-    sudo ln -sf "${base}/${i}" "/wp/wp-content/${i}"
 done
 
 if [ -n "${WP_PERSIST_UPLOADS}" ]; then
@@ -142,46 +135,6 @@ if ! wp core is-installed >/dev/null 2>&1; then
             --skip-email \
             --skip-plugins \
             --skip-themes
-                wp theme install twentytwentythree
-
-        if [ "${WP_INSTALL_PLUGINS}" = "true" ]; then
-            for Plugin in ${PLUGINS}; do
-                wp plugin install "$Plugin" --activate
-            done
-        fi
-
-        if [ "${WP_INSTALL_LANGUAGES}" = "true" ]; then
-            for Language in ${LANGUAGES}; do
-                wp language core install "$Language"
-                if [ "${WP_INSTALL_PLUGINS}" = "true" ]; then
-                    for Plugin in ${PLUGINS}; do
-                        wp language plugin install "$Plugin" "$Language"
-                    done
-                fi
-            done
-        fi
-
-        if [ "${WP_THEMETEST}" = "true" ]; then
-            echo "Installing Theme Unit Test Data"
-            wp plugin install wordpress-importer --activate
-            wget -q https://raw.githubusercontent.com/WPTT/theme-unit-test/master/themeunittestdata.wordpress.xml -O testdata.xml
-            wp import testdata.xml --authors=create
-            rm testdata.xml
-        fi
-    fi
-
-    if [ "${WP_ENVIRONMENT}" != "site" ]; then
-        for i in "$base"/*/; do
-            target=$(basename "$i")
-            case "$target" in
-                (user-mu-plugins|images|languages|plugins|themes|user-config|vendor);;
-                (*)
-                source=${i%%/};
-                environment="${WP_ENVIRONMENT}"s
-                sudo ln -sf "$source" "/wp/wp-content/$environment/$target"
-                ;;
-            esac
-        done
     fi
 
     wp user add-cap 1 view_query_monitor
