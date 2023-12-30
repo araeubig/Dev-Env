@@ -58,7 +58,11 @@
             "version": "latest",
             "moveUploadsToWorkspaces": false,
             "multisite": false,
-            "multisiteStyle": "subdirectory"
+            "multisiteStyle": "subdirectory",
+            "InstallLanguages": true,
+            "InstallPlugins": true,
+            "DeveloperEnvironment": "plugin",
+            "ThemeUnitTest": false
         },
         "./features/wp-cli": {
             "nightly": false
