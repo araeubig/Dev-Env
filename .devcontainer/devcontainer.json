@@ -52,11 +52,11 @@
             "composer": false
         },
         "./features/mariadb": {
-            "installDatabaseToWorkspaces": false
+            "installDatabaseToWorkspaces": true
         },
         "./features/wordpress": {
             "version": "latest",
-            "moveUploadsToWorkspaces": false,
+            "moveUploadsToWorkspaces": true,
             "multisite": false,
             "multisiteStyle": "subdirectory"
         },
