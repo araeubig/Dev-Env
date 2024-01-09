@@ -59,7 +59,7 @@
             "moveUploadsToWorkspaces": false,
             "multisite": false,
             "multisiteStyle": "subdirectory",
-            "InstallLanguages": false,
+            "InstallLanguages": true,
             "InstallPlugins": false,
             "DeveloperEnvironment": "plugin",
             "ThemeUnitTest": false
