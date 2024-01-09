@@ -60,7 +60,7 @@
             "multisite": false,
             "multisiteStyle": "subdirectory",
             "InstallLanguages": true,
-            "InstallPlugins": false,
+            "InstallPlugins": true,
             "DeveloperEnvironment": "plugin",
             "ThemeUnitTest": false
         },
