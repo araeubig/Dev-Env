@@ -142,7 +142,7 @@ if ! wp core is-installed >/dev/null 2>&1; then
             --skip-email \
             --skip-plugins \
             --skip-themes
-                wp theme install twentytwentythree
+        wp theme install twentytwentythree --activate
 
         if [ "${WP_INSTALL_PLUGINS}" = "true" ]; then
             for Plugin in ${PLUGINS}; do
