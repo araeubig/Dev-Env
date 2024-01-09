@@ -24,7 +24,7 @@ fi
 
 db_host=127.0.0.1
 db_admin_user=root
-wp_url="http://${WP_DOMAIN}"
+wp_url="https://${WP_DOMAIN}"
 wp_title="WordPress VIP Development Site"
 
 if [ -n "${WP_MULTISITE}" ]; then
